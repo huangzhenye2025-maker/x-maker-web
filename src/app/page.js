@@ -211,13 +211,13 @@ export default function Home() {
                 <li>✅ Priority Email Support</li>
               </ul>
               
-              <a href="https://haye-studio.lemonsqueezy.com/checkout/buy/ac8b1710-63ce-40f1-8883-40deb3d50330" 
+              <a href="https://zhenye.gumroad.com/l/x-maker" 
                  target="_blank" rel="noopener noreferrer" 
                  className="btn-primary btn-full" style={{ display: 'inline-block', textDecoration: 'none' }}>
                 Get Pro License Key
               </a>
               <p style={{ marginTop: '16px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                Secured by Lemon Squeezy 🍋
+                Secured by Gumroad 🔒
               </p>
             </div>
           </FadeIn>
