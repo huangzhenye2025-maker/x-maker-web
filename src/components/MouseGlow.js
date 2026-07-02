@@ -23,8 +23,8 @@ export default function MouseGlow() {
         width: '100vw',
         height: '100vh',
         pointerEvents: 'none',
-        zIndex: -1,
-        background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(29, 161, 242, 0.08), transparent 80%)`,
+        zIndex: 0,
+        background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(29, 161, 242, 0.15), transparent 80%)`,
         transition: 'background 0.1s ease-out'
       }}
     />
