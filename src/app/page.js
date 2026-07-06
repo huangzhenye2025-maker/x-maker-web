@@ -96,11 +96,25 @@ export default function Home() {
       {/* Demo Section */}
       <section id="demo" className="container demo-section">
         <FadeIn delay={0.4}>
-          <div className="demo-placeholder">
-            <div className="play-button">
-              <div className="play-icon"></div>
-            </div>
-            <p style={{ color: 'var(--text-secondary)', fontWeight: 600, zIndex: 1 }}>Watch the 1-minute demo</p>
+          <div style={{ 
+            borderRadius: '16px', 
+            overflow: 'hidden', 
+            border: '1px solid var(--card-border)', 
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+            marginTop: '10px' 
+          }}>
+            <video 
+              width="100%" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              controls 
+              style={{ display: 'block' }}
+            >
+              <source src="/demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </FadeIn>
       </section>
