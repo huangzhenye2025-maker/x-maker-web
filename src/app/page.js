@@ -103,18 +103,12 @@ export default function Home() {
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
             marginTop: '10px' 
           }}>
-            <video 
+            <img 
+              src="/demo.gif" 
+              alt="X-Maker Right-Click AI Demo" 
               width="100%" 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
-              controls 
-              style={{ display: 'block' }}
-            >
-              <source src="/demo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+              style={{ display: 'block', height: 'auto' }}
+            />
           </div>
         </FadeIn>
       </section>
