@@ -1,8 +1,50 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import './globals.css';
 import FadeIn from '@/components/FadeIn';
 import MouseGlow from '@/components/MouseGlow';
 
 export default function Home() {
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [purchaseSuccess, setPurchaseSuccess] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('purchase_success') === 'true') {
+        setPurchaseSuccess(true);
+        // Clean URL parameter
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, newUrl);
+      }
+    }
+  }, []);
+
+  const handleCheckout = async () => {
+    setIsCheckoutLoading(true);
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      if (data.checkoutUrl) {
+        // ALWAYS DO: New tab for checkout
+        window.open(data.checkoutUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        alert(data.error || 'Failed to create checkout session');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Network error. Failed to initiate checkout.');
+    } finally {
+      setIsCheckoutLoading(false);
+    }
+  };
+
   return (
     <main>
       <MouseGlow />
@@ -219,18 +261,67 @@ export default function Home() {
                 <li>✅ Private Rate-Limit & Abuse Protection</li>
               </ul>
               
-              <a href="https://zhenye.gumroad.com/l/x-maker" 
-                 target="_blank" rel="noopener noreferrer" 
-                 className="btn-primary btn-full" style={{ display: 'inline-block', textDecoration: 'none' }}>
-                Get Pro License Key
-              </a>
+              <button 
+                 onClick={handleCheckout}
+                 disabled={isCheckoutLoading}
+                 className="btn-primary btn-full" 
+                 style={{ 
+                   display: 'inline-block', 
+                   textDecoration: 'none',
+                   border: 'none',
+                   cursor: isCheckoutLoading ? 'not-allowed' : 'pointer',
+                   opacity: isCheckoutLoading ? 0.7 : 1
+                 }}>
+                {isCheckoutLoading ? 'Creating Session...' : 'Get Pro License Key'}
+              </button>
               <p style={{ marginTop: '16px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                Secured by Gumroad 🔒
+                Secured by Waffo Pancake 🔒
               </p>
             </div>
           </FadeIn>
         </div>
       </section>
+
+      {/* Success Notification */}
+      {purchaseSuccess && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 9999,
+          background: 'linear-gradient(135deg, #10B981, #059669)',
+          color: 'white',
+          padding: '16px 24px',
+          borderRadius: '12px',
+          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+        }}>
+          <span style={{ fontSize: '1.25rem' }}>🎉</span>
+          <div>
+            <strong style={{ display: 'block' }}>Purchase Successful!</strong>
+            <span style={{ fontSize: '0.9rem', opacity: 0.9 }}>Your Pro License Key has been generated and sent.</span>
+          </div>
+          <button 
+            onClick={() => setPurchaseSuccess(false)}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              fontSize: '1.25rem',
+              opacity: 0.8,
+              padding: '0 4px',
+              fontWeight: 'bold'
+            }}
+          >
+            ×
+          </button>
+        </div>
+      )}
 
       {/* FAQ Section */}
       <section id="faq" className="container faq-section">
