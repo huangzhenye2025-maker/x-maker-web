@@ -43,7 +43,7 @@ export default function Home() {
             marginBottom: '24px',
             border: '1px solid rgba(29, 161, 242, 0.2)'
           }}>
-            ✨ The Ultimate Chrome Extension for X
+            🚀 Audience Growth & Time-Saving Engine for X
           </div>
         </FadeIn>
         
@@ -56,8 +56,8 @@ export default function Home() {
             marginBottom: '24px',
             letterSpacing: '-1.5px'
           }}>
-            Turn Any Webpage Into <br/>
-            <span style={{ color: 'var(--accent-color)' }}>Viral Tweets</span> in 1-Click.
+            Save 2 Hours Daily & <br/>
+            Grow Your X Audience <span style={{ color: 'var(--accent-color)' }}>3x Faster</span>.
           </h1>
         </FadeIn>
         
@@ -68,7 +68,7 @@ export default function Home() {
             maxWidth: '600px', 
             marginBottom: '40px' 
           }}>
-            Stop reading and start creating. X-Maker reads the page for you, extracts the core message, and writes highly engaging tweets directly from your browser.
+            Stop wasting hours reading and curating content. X-Maker extracts core insights from any page in 1-click and writes viral threads—converting your daily reading into an audience growth engine.
           </p>
         </FadeIn>
         
@@ -122,8 +122,8 @@ export default function Home() {
       {/* Features Section */}
       <section id="features" className="container">
         <FadeIn>
-          <h2 className="section-title">Built for Indie Hackers</h2>
-          <p className="section-subtitle">Everything you need to grow your X audience effortlessly.</p>
+          <h2 className="section-title">Grow Your Reach, Not Your Workload</h2>
+          <p className="section-subtitle">Turn daily reading and industry insights into a traffic-generating channel.</p>
         </FadeIn>
         
         <div className="features-grid">
@@ -218,11 +218,11 @@ export default function Home() {
               <div className="price-period">Lifetime Access</div>
               
               <ul className="pricing-features">
-                <li>✅ Unlimited Tweet Generation</li>
-                <li>✅ Multiple Tones & Custom Prompts</li>
-                <li>✅ Right-Click Context Menu</li>
-                <li>✅ Private Rate-Limit Protection</li>
-                <li>✅ Priority Email Support</li>
+                <li>✅ Save 2+ Hours of Reading & Curation Daily</li>
+                <li>✅ 1-Click Viral Thread & Post Writer</li>
+                <li>✅ Multi-Tone Engine (Tech Bro, Funny, Professional)</li>
+                <li>✅ Seamless Right-Click Context Menu</li>
+                <li>✅ Private Rate-Limit & Abuse Protection</li>
               </ul>
               
               <a href="https://zhenye.gumroad.com/l/x-maker" 
