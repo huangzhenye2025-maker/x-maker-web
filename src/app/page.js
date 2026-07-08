@@ -47,6 +47,29 @@ export default function Home() {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "X-Maker Pro",
+            "operatingSystem": "Chrome, Edge, Brave, Arc",
+            "applicationCategory": "SocialNetworkingApplication",
+            "offers": {
+              "@type": "Offer",
+              "price": "9.99",
+              "priceCurrency": "USD"
+            },
+            "description": "An audience growth and time-saving engine for X (Twitter). Extract insights from any webpage and auto-write viral posts and threads in 1-click.",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "24"
+            }
+          })
+        }}
+      />
       <MouseGlow />
       <div className="bg-blob"></div>
       
