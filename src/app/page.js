@@ -8,12 +8,15 @@ import MouseGlow from '@/components/MouseGlow';
 export default function Home() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
+  const [orderId, setOrderId] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('purchase_success') === 'true') {
         setPurchaseSuccess(true);
+        const id = urlParams.get('order_id') || urlParams.get('orderId') || '';
+        setOrderId(id);
         // Clean URL parameter
         const newUrl = window.location.pathname;
         window.history.replaceState({}, document.title, newUrl);
@@ -326,7 +329,9 @@ export default function Home() {
           <span style={{ fontSize: '1.25rem' }}>🎉</span>
           <div>
             <strong style={{ display: 'block' }}>Purchase Successful!</strong>
-            <span style={{ fontSize: '0.9rem', opacity: 0.9 }}>Your Pro License Key has been generated and sent.</span>
+            <span style={{ fontSize: '0.9rem', opacity: 0.9 }}>
+              {orderId ? `Your Pro License Key (Order ID) is: ${orderId}` : 'Your Pro License Key has been generated and sent to your email.'}
+            </span>
           </div>
           <button 
             onClick={() => setPurchaseSuccess(false)}
