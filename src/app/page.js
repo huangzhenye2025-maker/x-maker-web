@@ -84,6 +84,7 @@ export default function Home() {
           </div>
           <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
             <a href="#features" style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Features</a>
+            <a href="#other-products" style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>AI Purifier</a>
             <a href="#pricing" style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Pricing</a>
             <a href="#pricing" className="nav-btn">Get Pro</a>
           </div>
@@ -257,6 +258,172 @@ export default function Home() {
                 <div className="author-info">
                   <h4>David Kim</h4>
                   <p>Growth Marketer • 8k Followers</p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Other Products Section */}
+      <section id="other-products" className="container" style={{ marginTop: '80px', marginBottom: '80px' }}>
+        <FadeIn>
+          <h2 className="section-title">More Tools from X-Maker Studio</h2>
+          <p className="section-subtitle">Discover our other premium indie tools designed to supercharge your workflow.</p>
+        </FadeIn>
+        
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: '32px',
+          marginTop: '40px'
+        }}>
+          <FadeIn delay={0.1}>
+            <div className="glass-panel" style={{
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: '40px',
+              padding: '40px',
+              borderRadius: '20px',
+              alignItems: 'center',
+              background: 'var(--card-bg)',
+              border: '1px solid var(--card-border)'
+            }}>
+              {/* Product Visual */}
+              <div style={{
+                flex: '1 1 250px',
+                display: 'flex',
+                justifyContent: 'center',
+                background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1))',
+                padding: '40px',
+                borderRadius: '16px',
+                border: '1px solid var(--card-border)',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  width: '120px',
+                  height: '120px',
+                  background: 'radial-gradient(circle, #7C3AED 0%, transparent 70%)',
+                  opacity: 0.15,
+                  filter: 'blur(30px)',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)'
+                }}></div>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '16px',
+                  zIndex: 1
+                }}>
+                  <div style={{
+                    width: '96px',
+                    height: '96px',
+                    borderRadius: '24px',
+                    background: 'linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '3rem',
+                    boxShadow: '0 20px 40px -10px rgba(79, 70, 229, 0.5)'
+                  }}>
+                    🧹
+                  </div>
+                  <div style={{
+                    fontWeight: 700,
+                    fontSize: '1.2rem',
+                    letterSpacing: '-0.5px',
+                    color: 'var(--text-primary)'
+                  }}>
+                    AI Ad Purifier
+                  </div>
+                  <div style={{
+                    fontSize: '0.8rem',
+                    padding: '4px 12px',
+                    background: 'rgba(255, 255, 255, 0.08)',
+                    color: 'var(--text-secondary)',
+                    borderRadius: '50px',
+                    border: '1px solid rgba(255, 255, 255, 0.05)'
+                  }}>
+                    Chrome Extension
+                  </div>
+                </div>
+              </div>
+              
+              {/* Product Info */}
+              <div style={{
+                flex: '2 1 350px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                textAlign: 'left'
+              }}>
+                <div style={{
+                  display: 'inline-block',
+                  padding: '4px 12px',
+                  background: 'rgba(16, 185, 129, 0.1)',
+                  color: '#10B981',
+                  borderRadius: '50px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  width: 'fit-content'
+                }}>
+                  NEW RELEASE
+                </div>
+                <h3 style={{
+                  fontSize: '2rem',
+                  fontWeight: 800,
+                  letterSpacing: '-1px',
+                  margin: 0,
+                  color: 'var(--text-primary)'
+                }}>
+                  AI Ad Purifier - One-Click AI Ad Blocker
+                </h3>
+                <p style={{
+                  color: 'var(--text-secondary)',
+                  lineHeight: 1.6,
+                  fontSize: '1.05rem',
+                  margin: 0
+                }}>
+                  Tired of cluttered webpages? AI Ad Purifier uses DeepSeek AI to analyze any webpage DOM structure in 1-click and intelligently hide ads, sponsored banners, and promotion popups. It performs native grid reflow, collapsing layout empty spaces automatically.
+                </p>
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '16px',
+                  marginTop: '10px'
+                }}>
+                  <a 
+                    href="https://pancake.waffo.ai/store/xmaker-studio-p7o0nfzy/product/PROD_0BT62Y3uxafpZyoOITOO7E?type=onetime&currency=USD&test=true"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    Buy License Code ($9.99)
+                  </a>
+                  <a 
+                    href="https://chrome.google.com/webstore"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: '14px 28px',
+                      fontWeight: 600,
+                      borderRadius: '50px',
+                      background: 'rgba(255,255,255,0.05)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      textDecoration: 'none',
+                      color: 'var(--text-primary)'
+                    }}
+                  >
+                    Install Extension
+                  </a>
                 </div>
               </div>
             </div>
