@@ -86,6 +86,14 @@ export default function Home() {
             <a href="#features" style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Features</a>
             <a href="#other-products" style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>AI Purifier</a>
             <a href="#pricing" style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Pricing</a>
+            <a 
+              href="https://chromewebstore.google.com/detail/x-maker-pro-viral-tweet-g/ndnjnobggamihdnihbmobbmcbjiejgnc" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ color: 'var(--text-secondary)', fontWeight: 600 }}
+            >
+              Install Extension
+            </a>
             <a href="#pricing" className="nav-btn">Get Pro</a>
           </div>
         </div>
@@ -496,9 +504,24 @@ export default function Home() {
           <span style={{ fontSize: '1.25rem' }}>🎉</span>
           <div>
             <strong style={{ display: 'block' }}>Purchase Successful!</strong>
-            <span style={{ fontSize: '0.9rem', opacity: 0.9 }}>
+            <span style={{ fontSize: '0.9rem', opacity: 0.9, display: 'block' }}>
               {orderId ? `Your Pro License Key (Order ID) is: ${orderId}` : 'Your Pro License Key has been generated and sent to your email.'}
             </span>
+            <a 
+              href="https://chromewebstore.google.com/detail/x-maker-pro-viral-tweet-g/ndnjnobggamihdnihbmobbmcbjiejgnc" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ 
+                display: 'inline-block', 
+                marginTop: '8px', 
+                color: 'white', 
+                textDecoration: 'underline',
+                fontWeight: 600,
+                fontSize: '0.9rem' 
+              }}
+            >
+              📥 Click here to install X-Maker Pro from Chrome Web Store
+            </a>
           </div>
           <button 
             onClick={() => setPurchaseSuccess(false)}
