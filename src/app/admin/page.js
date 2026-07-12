@@ -351,56 +351,98 @@ export default function AdminDashboard() {
           
           {/* Status Indicators */}
           <div className="status-indicators">
-            <div className="status-badge">
+            <a 
+              href="https://dashboard.render.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="status-badge"
+              style={{ cursor: 'pointer', textDecoration: 'none' }}
+            >
               <span className={`status-dot ${backendOnline ? 'green' : 'red'}`}></span>
               <span>Render 后端: {backendOnline ? 'Online' : 'Offline'}</span>
-            </div>
-            <div className="status-badge">
+            </a>
+            <a 
+              href="https://vercel.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="status-badge"
+              style={{ cursor: 'pointer', textDecoration: 'none' }}
+            >
               <span className="status-dot green"></span>
               <span>Vercel 前端: Online</span>
-            </div>
-            <div className="status-badge">
+            </a>
+            <a 
+              href="https://www.mongodb.com/cloud/atlas" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="status-badge"
+              style={{ cursor: 'pointer', textDecoration: 'none' }}
+            >
               <span className={`status-dot ${stats?.deepseek_available ? 'green' : 'yellow'}`}></span>
               <span>MongoDB 数据库: Connected</span>
-            </div>
+            </a>
           </div>
         </div>
 
         {/* Stats Grid */}
         <div className="stats-grid">
           
-          <div className="glass-panel stat-card">
+          <a 
+            href="https://www.mongodb.com/cloud/atlas" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="glass-panel stat-card"
+            style={{ display: 'block', textDecoration: 'none', cursor: 'pointer' }}
+          >
             <div className="stat-label">预估总营收</div>
             <div className="stat-value">${stats?.estimated_revenue || '0.00'}</div>
-            <div className="stat-desc">基于已激活用户 $9.99/位 估算</div>
+            <div className="stat-desc">基于已激活用户 $9.99/位 估算 (点击进入数据库)</div>
             <div className="stat-icon">💵</div>
-          </div>
+          </a>
 
-          <div className="glass-panel stat-card">
+          <a 
+            href="https://www.mongodb.com/cloud/atlas" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="glass-panel stat-card"
+            style={{ display: 'block', textDecoration: 'none', cursor: 'pointer' }}
+          >
             <div className="stat-label">已激活用户数</div>
             <div className="stat-value">{stats?.active_users || 0} 人</div>
-            <div className="stat-desc">当前在用插件的正式付费客户</div>
+            <div className="stat-desc">当前在用插件的正式付费客户 (点击进入数据库)</div>
             <div className="stat-icon">👥</div>
-          </div>
+          </a>
 
-          <div className="glass-panel stat-card">
+          <a 
+            href="https://www.mongodb.com/cloud/atlas" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="glass-panel stat-card"
+            style={{ display: 'block', textDecoration: 'none', cursor: 'pointer' }}
+          >
             <div className="stat-label">总卡密生成数</div>
             <div className="stat-value">{stats?.total_users || 0} 笔</div>
-            <div className="stat-desc">包含退款、激活、废弃卡密总和</div>
+            <div className="stat-desc">包含退款、激活、废弃卡密总和 (点击进入数据库)</div>
             <div className="stat-icon">🎟️</div>
-          </div>
+          </a>
 
-          <div className="glass-panel stat-card">
+          <a 
+            href="https://platform.deepseek.com/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="glass-panel stat-card"
+            style={{ display: 'block', textDecoration: 'none', cursor: 'pointer' }}
+          >
             <div className="stat-label">DeepSeek API 余额</div>
             <div className="stat-value">
               {stats?.deepseek_balance || 'N/A'}
             </div>
             <div className="stat-desc">
               <span className="status-dot green" style={{ width: '8px', height: '8px', boxShadow: 'none' }}></span>
-              {stats?.deepseek_available ? 'AI 服务运行中' : '服务余额不足/欠费'}
+              {stats?.deepseek_available ? 'AI 服务运行中 (点击去充值)' : '服务余额不足/欠费 (点击去充值)'}
             </div>
             <div className="stat-icon">🤖</div>
-          </div>
+          </a>
 
         </div>
 
