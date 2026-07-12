@@ -19,9 +19,9 @@ export default function TermsOfService() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">3. Acceptable Use & Violation</h2>
-          <p>You agree not to abuse, exploit, reverse engineer, or redistribute the extension. You may not use the AI generation service for illegal purposes or to spam the platform.</p>
-          <p><strong>Any violation of these terms will lead to immediate suspension or termination of your service, revoking of your license keys without refund, and we reserve the right to pursue legal remedies.</strong></p>
+          <h2 className="text-2xl font-semibold text-white">3. Acceptable Use & Content Safety</h2>
+          <p>You agree not to abuse, exploit, reverse engineer, or redistribute the extension. You must use X-Maker Pro in full compliance with our <a href="/aup" className="text-[#1DA1F2] underline hover:text-[#0d8bd9]">Acceptable Use Policy (AUP)</a>.</p>
+          <p>Specifically, you may not use the AI content generation service to produce spam, hate speech, misinformation, or impersonate others. Any violation of these safety policies will lead to the immediate suspension or permanent termination of your service, blacklisting of your license keys without refund, and we reserve the right to pursue legal remedies.</p>
         </section>
 
         <section className="space-y-4">

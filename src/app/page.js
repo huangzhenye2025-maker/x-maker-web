@@ -391,8 +391,9 @@ export default function Home() {
         <div className="container">
           <div className="footer-links">
             <a href="#">Twitter</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/aup">Acceptable Use Policy (AUP)</a>
             <a href="mailto:support@x-maker.com">Support</a>
           </div>
           <p>© 2026 X-Maker Pro. Built by Indie Hacker.</p>
