@@ -52,10 +52,14 @@ export default function PrivacyPolicy() {
               </li>
             </ul>
 
-            <h3 className="text-xl font-medium text-white">C. Billing & Payment Information</h3>
+            <h3 className="text-xl font-medium text-white">C. Payment & Billing Information Collection</h3>
             <p>
-              If you purchase a premium license for any of our extensions, the transaction is handled entirely by our third-party merchant of record, <strong>Waffo Pancake</strong>. They collect your billing name, email address, and payment card details. We do not store or process your credit card numbers on our servers. We receive and store only your payment confirmation, email address, and the generated Order ID for license validation.
+              When you purchase a license key, all checkout processes are securely processed by our Merchant of Record, <strong>Waffo Pancake</strong> (Waffo Technology Ltd).
             </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>What Waffo Collects:</strong> Payment transaction data including full name, billing address, email address, IP address, and credit/debit card numbers or digital wallet details.</li>
+              <li><strong>What We Store:</strong> We do <strong>not</strong> collect or store full credit card numbers or banking information on X-Maker servers. We collect and retain only your customer email address, generated Order ID (`ORD_xxx`), transaction timestamp, license status (`active` or `refunded`), and gross purchase amount to generate key entitlements and process refunds.</li>
+            </ul>
           </div>
         </section>
 
@@ -65,26 +69,35 @@ export default function PrivacyPolicy() {
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>To execute core features:</strong> Generating AI ad-blocking selectors (for AI Ad Purifier) or writing posts/threads (for X-Maker Pro) based on the active tab content you submit.</li>
             <li><strong>License Verification:</strong> Validating your Order ID/License Key against our backend database to verify your premium access.</li>
-            <li><strong>To improve performance:</strong> Analyzing anonymous server error logs to fix bugs and improve extension response speeds.</li>
+            <li><strong>Customer Support & Accounting:</strong> Managing subscription status, issuing requested refunds, and fulfilling tax or merchant accounting duties.</li>
           </ul>
           <p>We do not use your personal data or page content for advertising, user profiling, tracking, or marketing purposes.</p>
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">4. Data Sharing and Disclosure</h2>
-          <p>We only share data with third parties in the following limited scenarios:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>
-              <strong>AI Model Providers:</strong> When you trigger AI operations, the page DOM text structure is transmitted securely via HTTPS to our backend server and then sent to <strong>DeepSeek API</strong> or <strong>OpenAI API</strong>. No personal identifiers (such as names, emails, IP addresses, or account details) are shared with the AI providers.
-            </li>
-            <li>
-              <strong>Payment Processors:</strong> Your email and transaction metadata are shared with <strong>Waffo Pancake</strong> to process purchases and manage invoices.
-            </li>
-            <li>
-              <strong>Legal Compliance:</strong> We may disclose information if required by law, subpoena, or government regulation.
-            </li>
-          </ul>
-          <p><strong>We never sell, rent, or trade your data to third-party advertisers or data brokers.</strong></p>
+          <h2 className="text-2xl font-semibold text-white">4. Third-Party Data Sharing and Disclosure</h2>
+          <p>We share minimal necessary data with specific third-party service providers solely to operate our product:</p>
+          <div className="bg-gray-900/60 border border-gray-800 p-6 rounded-xl space-y-4">
+            <div>
+              <h4 className="font-semibold text-white">1. Merchant of Record & Payment Gateway (Waffo Pancake)</h4>
+              <p className="text-sm text-gray-400">
+                Billing details, purchase amounts, customer email, and payment tokens are shared with <strong>Waffo Pancake</strong> to authorize payments, prevent fraud, issue receipts, and process refunds. Refer to Waffo Privacy Policy for detailed payment data handling.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white">2. AI Infrastructure Providers (DeepSeek / OpenAI)</h4>
+              <p className="text-sm text-gray-400">
+                Non-identifiable text snippets or DOM page structures are transmitted securely over TLS to AI inference providers (such as DeepSeek API). No personal billing information, IP addresses, or customer account details are ever transmitted to AI providers.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white">3. Cloud Hosting & Database Infrastructure (MongoDB Atlas & Render)</h4>
+              <p className="text-sm text-gray-400">
+                License keys and Order IDs are stored in encrypted cloud database collections (MongoDB Atlas) hosted on secure cloud servers (Render) to perform API key authentication.
+              </p>
+            </div>
+          </div>
+          <p><strong>We never sell, rent, or trade your personal data to third-party data brokers or advertising networks.</strong></p>
         </section>
 
         <section className="space-y-4">

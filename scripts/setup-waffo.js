@@ -1,65 +1,58 @@
 const fs = require('fs');
 const path = require('path');
 
-// 1. Load environment variables from .env.local
-const dotenvPath = path.resolve(__dirname, '../.env.local');
-if (fs.existsSync(dotenvPath)) {
-  console.log('📖 Loading environment variables from .env.local...');
-  const envConfig = fs.readFileSync(dotenvPath, 'utf-8');
-  for (const line of envConfig.split('\n')) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-    const parts = trimmed.split('=');
-    if (parts.length >= 2) {
-      const key = parts[0].trim();
-      let value = parts.slice(1).join('=').trim();
-      if (value.startsWith('"') && value.endsWith('"')) {
-        value = value.substring(1, value.length - 1);
-      }
-      process.env[key] = value;
-    }
+// Parse .env.local properly
+const dotenvPath = path.resolve('.env.local');
+const envConfig = fs.readFileSync(dotenvPath, 'utf-8');
+for (const line of envConfig.split('\n')) {
+  const trimmed = line.trim();
+  if (!trimmed || trimmed.startsWith('#')) continue;
+  const eqIdx = trimmed.indexOf('=');
+  if (eqIdx < 0) continue;
+  const key = trimmed.substring(0, eqIdx).trim();
+  let value = trimmed.substring(eqIdx + 1).trim();
+  if (value.startsWith('"') && value.endsWith('"')) {
+    value = value.slice(1, -1);
   }
+  value = value.replace(/\\n/g, '\n');
+  process.env[key] = value;
 }
 
-const merchantId = process.env.WAFFO_MERCHANT_ID;
-const storeId = process.env.WAFFO_STORE_ID;
-const privateKey = process.env.WAFFO_PRIVATE_KEY;
-
-if (!merchantId || !privateKey) {
-  console.error('❌ Error: WAFFO_MERCHANT_ID or WAFFO_PRIVATE_KEY is missing in .env.local.');
-  console.error('Please configure your private key first in your .env.local file.');
-  process.exit(1);
-}
-
-// 2. Initialize Waffo Pancake SDK
 const { WaffoPancake } = require('@waffo/pancake-ts');
-
 const client = new WaffoPancake({
-  merchantId,
-  privateKey,
+  merchantId: process.env.WAFFO_MERCHANT_ID,
+  privateKey: process.env.WAFFO_PRIVATE_KEY,
 });
 
+const storeId = process.env.WAFFO_STORE_ID;
+
 async function main() {
-  try {
-    console.log('🔄 Connecting to Waffo Pancake...');
-    
-    // Check if store exists or verify API keys
-    const result = await client.graphql.query({
-      query: `query { stores { id name status } }`
-    });
-    
-    const stores = result.data?.stores ?? [];
-    console.log(`✅ Authentication successful. Found ${stores.length} store(s).`);
-    
-    const targetStore = stores.find(s => s.id === storeId);
-    if (!targetStore) {
-      console.error(`❌ Target store ${storeId} not found under this merchant account.`);
-      process.exit(1);
-    }
-    console.log(`🏬 Target Store: ${targetStore.name} (${targetStore.id})`);
-    
-    // 3. Create the product "X-Maker Pro License Key" ($9.99 USD)
-    console.log('📦 Creating product "X-Maker Pro License Key" ($9.99)...');
+  console.log('🔄 Connecting to Waffo Pancake...');
+
+  // 1. List all stores to confirm connection
+  const storesResult = await client.graphql.query({
+    query: 'query { stores { id name status } }'
+  });
+  const stores = storesResult.data?.stores ?? [];
+  console.log(`✅ Connected! Found ${stores.length} store(s).`);
+
+  // 2. List existing products for the store
+  console.log('\n📦 Checking existing products...');
+  const productsResult = await client.graphql.query({
+    query: `query { onetimeProducts(storeId: "${storeId}") { id name status prices { currency amount } } }`
+  });
+  const products = productsResult.data?.onetimeProducts ?? [];
+  console.log(`Found ${products.length} product(s):`);
+  products.forEach(p => console.log(`  - ${p.id}: ${p.name} (${p.status})`));
+
+  if (products.length > 0) {
+    // Use existing product
+    const existing = products[0];
+    console.log(`\n✅ Using existing product: ${existing.id}`);
+    await saveProductId(existing.id);
+  } else {
+    // Create new product
+    console.log('\n📦 Creating product "X-Maker Pro License Key" ($9.99)...');
     const { product } = await client.onetimeProducts.create({
       storeId,
       name: "X-Maker Pro License Key",
@@ -67,32 +60,39 @@ async function main() {
       prices: {
         USD: { amount: "9.99", taxIncluded: true, taxCategory: "software" },
       },
-      successUrl: "https://x-maker-web.vercel.app/", // Dynamic default
+      successUrl: "https://x-maker-web.vercel.app/",
       metadata: { sku: "X-MAKER-PRO-LIFETIME" }
     });
-    
-    console.log(`🎉 Product created successfully! ID: ${product.id}`);
-    
-    // 4. Publish product to live production if using live keys, otherwise publish in test
+    console.log(`🎉 Product created! ID: ${product.id}`);
+
     console.log('🚀 Publishing product...');
     await client.onetimeProducts.publish({ id: product.id });
-    console.log('✅ Product published successfully.');
-    
-    // 5. Append Product ID to .env.local
-    let envContent = fs.readFileSync(dotenvPath, 'utf-8');
-    if (!envContent.includes('NEXT_PUBLIC_WAFFO_PRODUCT_ID')) {
-      envContent += `\nNEXT_PUBLIC_WAFFO_PRODUCT_ID="${product.id}"\n`;
-      fs.writeFileSync(dotenvPath, envContent, 'utf-8');
-      console.log(`💾 Saved NEXT_PUBLIC_WAFFO_PRODUCT_ID="${product.id}" to .env.local`);
-    } else {
-      console.log(`ℹ️ NEXT_PUBLIC_WAFFO_PRODUCT_ID already exists in .env.local`);
-    }
-    
-    console.log('✨ Setup complete!');
-  } catch (error) {
-    console.error('❌ Error during setup:', error);
-    process.exit(1);
+    console.log('✅ Product published.');
+
+    await saveProductId(product.id);
   }
 }
 
-main();
+async function saveProductId(productId) {
+  let envContent = fs.readFileSync(dotenvPath, 'utf-8');
+  if (envContent.includes('NEXT_PUBLIC_WAFFO_PRODUCT_ID')) {
+    // Update existing
+    envContent = envContent.replace(
+      /NEXT_PUBLIC_WAFFO_PRODUCT_ID=.*/,
+      `NEXT_PUBLIC_WAFFO_PRODUCT_ID="${productId}"`
+    );
+  } else {
+    envContent += `\nNEXT_PUBLIC_WAFFO_PRODUCT_ID="${productId}"\n`;
+  }
+  fs.writeFileSync(dotenvPath, envContent, 'utf-8');
+  console.log(`💾 Saved NEXT_PUBLIC_WAFFO_PRODUCT_ID="${productId}" to .env.local`);
+  console.log('\n✨ Setup complete! Summary:');
+  console.log(`   WAFFO_MERCHANT_ID = ${process.env.WAFFO_MERCHANT_ID}`);
+  console.log(`   WAFFO_STORE_ID    = ${process.env.WAFFO_STORE_ID}`);
+  console.log(`   NEXT_PUBLIC_WAFFO_PRODUCT_ID = ${productId}`);
+}
+
+main().catch(e => {
+  console.error('❌ Error:', e.message);
+  process.exit(1);
+});
