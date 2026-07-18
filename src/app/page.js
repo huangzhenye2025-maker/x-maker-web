@@ -105,36 +105,44 @@ export default function Home() {
         flexDirection: 'column', 
         alignItems: 'center', 
         textAlign: 'center', 
-        paddingTop: '100px',
-        paddingBottom: '60px'
+        paddingTop: '120px',
+        paddingBottom: '70px'
       }}>
         <FadeIn yOffset={30}>
           <div style={{ 
-            display: 'inline-block', 
-            padding: '6px 16px', 
-            background: 'rgba(29, 161, 242, 0.1)', 
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '8px 20px', 
+            background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(99, 102, 241, 0.12) 100%)', 
             color: 'var(--accent-color)', 
             borderRadius: '50px',
             fontWeight: 600,
-            fontSize: '0.9rem',
-            marginBottom: '24px',
-            border: '1px solid rgba(29, 161, 242, 0.2)'
+            fontSize: '0.88rem',
+            marginBottom: '28px',
+            border: '1px solid rgba(56, 189, 248, 0.25)',
+            boxShadow: '0 0 20px rgba(56, 189, 248, 0.15)'
           }}>
-            🚀 Audience Growth & Time-Saving Engine for X
+            <span style={{ fontSize: '1.1rem' }}>⚡</span> Audience Growth & Time-Saving Engine for X
           </div>
         </FadeIn>
         
         <FadeIn delay={0.1} yOffset={40}>
           <h1 style={{ 
-            fontSize: '4.5rem', 
+            fontSize: '4.75rem', 
             fontFamily: 'var(--font-display)', 
             fontWeight: 900, 
-            lineHeight: 1.1,
-            marginBottom: '24px',
-            letterSpacing: '-1.5px'
+            lineHeight: 1.08,
+            marginBottom: '28px',
+            letterSpacing: '-2px',
+            maxWidth: '960px'
           }}>
             Save 2 Hours Daily & <br/>
-            Grow Your X Audience <span style={{ color: 'var(--accent-color)' }}>3x Faster</span>.
+            Grow Your Audience <span style={{ 
+              background: 'linear-gradient(135deg, #38bdf8 0%, #818cf8 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}>3x Faster</span>.
           </h1>
         </FadeIn>
         
@@ -142,29 +150,21 @@ export default function Home() {
           <p style={{ 
             fontSize: '1.25rem', 
             color: 'var(--text-secondary)', 
-            maxWidth: '600px', 
-            marginBottom: '40px' 
+            maxWidth: '640px', 
+            marginBottom: '44px',
+            lineHeight: 1.7
           }}>
             Stop wasting hours reading and curating content. X-Maker extracts core insights from any page in 1-click and writes viral threads—converting your daily reading into an audience growth engine.
           </p>
         </FadeIn>
         
         <FadeIn delay={0.3} yOffset={20}>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <a href="#pricing" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none' }}>
-              Get Started Now
+          <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <a href="#pricing" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+              Get Started Now <span>→</span>
             </a>
-            <a href="#demo" style={{
-              padding: '14px 32px',
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              borderRadius: '50px',
-              background: 'var(--card-bg)',
-              border: '1px solid var(--card-border)',
-              display: 'flex',
-              alignItems: 'center'
-            }}>
-              See how it works
+            <a href="#demo" className="btn-secondary" style={{ textDecoration: 'none' }}>
+              <span>▶</span> See How It Works
             </a>
           </div>
         </FadeIn>
