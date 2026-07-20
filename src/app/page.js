@@ -406,7 +406,7 @@ export default function Home() {
                   marginTop: '10px'
                 }}>
                   <a 
-                    href="https://pancake.waffo.ai/store/xmaker-studio-p7o0nfzy/product/PROD_0BT62Y3uxafpZyoOITOO7E?type=onetime&currency=USD&test=true"
+                    href="https://pancake.waffo.ai/store/xmaker-studio-p7o0nfzy/product/PROD_0BT62Y3uxafpZyoOITOO7E?type=onetime&currency=USD"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary"
@@ -415,7 +415,7 @@ export default function Home() {
                     Buy License Code ($9.99)
                   </a>
                   <a 
-                    href="https://chrome.google.com/webstore"
+                    href="https://chromewebstore.google.com/detail/nhpcadknmmgcdkpbebcbiooinmnjnah"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
